@@ -5,35 +5,38 @@ define('URLESS', true);
 require 'functions.php';
 
 if(isset($_POST['link'])) {
-	$url = $_POST['link'];
-	
-	$terminate = false;
-	$length = 4;
-	$cpt = 0;
-	
-	while(!$terminate) {
-		$cpt++;
-		$uid = generateId($length);
+	$url = filter_var($_POST['link'], FILTER_VALIDATE_URL);
+
+	if($url) {
+		$terminate = false;
+		$length = 4;
+		$cpt = 0;
 		
-		if($cpt >= 15) {
-			$cpt = 0;
-			$length++;
+		while(!$terminate) {
+			$cpt++;
+			$uid = generateId($length);
+			
+			if($cpt >= 15) {
+				$cpt = 0;
+				$length++;
+			}
+			
+			$use = openId($uid,true);
+			
+			if($use == false) {
+				appendToId($uid,$url);
+				$terminate = true;
+			}
 		}
 		
-		$use = openId($uid,true);
+		$short = $siteurl . '/?' . $uid;
 		
-		if($use == false) {
-			appendToId($uid,$url);
-			$terminate = true;
-		}
+		$message = "Your shortened url is <a href='http://$short' target=_blank>$short</a>";
+		$title = 'Please sir, take your url';
+		
+		include 'view/index.php';
+		exit;
 	}
-	
-	$short = $siteurl . '/?' . $uid;
-	
-	$message = "Your shortened url is <a href='http://$short' target=_blank>$short</a>";
-	$title = 'Please sir, take your url';
-	
-	include 'view/index.php';
-} else {
-	header('Location: .');
 }
+
+header('Location: .');

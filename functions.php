@@ -34,6 +34,8 @@ function appendToId($id,$url) {
 	$dir = strtolower(substr($id,0,2));
 	$file = strtolower(substr($id,0,4));
 	
+	$url = urlencode(utf8_encode($url));
+	
 	file_put_contents('./data/' . $dir . '/' . $file . '.php', '$links[\''.$id.'\'] = \''.$url.'\';' . PHP_EOL, FILE_APPEND);
 }
 
