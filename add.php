@@ -12,6 +12,12 @@ if(isset($_POST['link'])) {
 		$length = 4;
 		$cpt = 0;
 		
+		$uid = $driver->getId($url);
+		
+		if($uid != null) {
+			$terminate = true;
+		}
+		
 		while(!$terminate) {
 			$cpt++;
 			$uid = generateId($length);
@@ -21,11 +27,19 @@ if(isset($_POST['link'])) {
 				$length++;
 			}
 			
-			$use = openId($uid,true);
+			$use = $driver->openId($uid,true);
 			
 			if($use == false) {
-				appendToId($uid,$url);
+				$result = $driver->appendToId($uid,$url);
 				$terminate = true;
+				
+				if($result == false) {
+					$message = "An unknown error occurred";
+					$title = 'Please try later';
+					
+					include 'view/index.php';
+					exit;				
+				}
 			}
 		}
 		

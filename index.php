@@ -10,11 +10,11 @@ if(count($_GET) > 0) {
 
 	if(ctype_alnum($id)) {
 		
-		$url = openId($id);
+		$url = $driver->openId($id);
 		$dir = strtolower(substr($id,0,2));
 		$file = strtolower(substr($id,0,4));
 
-		if($url !== false) {
+		if($url !== null) {
 
 			$url = utf8_decode(urldecode($url));
 		
