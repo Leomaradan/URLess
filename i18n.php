@@ -77,7 +77,7 @@ class i18n {
 			
 			return $text;
 		} else {
-			return $cat.'-'$id;
+			return $cat.'-'.$id;
 		}
 	}
 
