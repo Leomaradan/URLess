@@ -76,6 +76,8 @@ class i18n {
 			$text = preg_replace($var,$param,$this->lang_array[$cat][$id]);
 			
 			return $text;
+		} else {
+			return $cat.'-'$id;
 		}
 	}
 
