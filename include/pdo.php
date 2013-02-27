@@ -25,8 +25,8 @@ class PdoDriver implements AccessDriver {
 		$sth->execute(array($id));
 		
 		$result = $sth->fetch();
-		
-		if(count($result) > 0) {
+
+		if(is_array($result) && count($result) > 0) {
 			return $result['Url'];
 		}
 		
@@ -47,7 +47,7 @@ class PdoDriver implements AccessDriver {
 		
 		$result = $sth->fetch();
 		
-		if(count($result) > 0) {
+		if(is_array($result) && count($result) > 0) {
 			return $result['Id'];
 		}
 		

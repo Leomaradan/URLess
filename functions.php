@@ -1,13 +1,20 @@
 <?php
 
+session_start();
+
 if(!defined('URLESS')) {
 	header('Location: .');
 }
 
 require 'config.php';
 require 'driver.php';
+require 'i18n.php';
 
-$driver = Driver::Get("sqlite");
+$driver = Driver::Get("file");
+
+$lang = i18n::getLangCode();
+
+$i18n = new i18n($lang);
 
 function generateId($nb) {
 

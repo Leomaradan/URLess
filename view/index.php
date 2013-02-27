@@ -11,9 +11,9 @@ if(!defined('URLESS')) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		
-        <title><?php echo $sitename; ?></title>
+        <title><?php echo $i18n->getText('site','sitename');  ?></title>
 		
-        <meta name="description" content="<?php echo $description; ?>">
+        <meta name="description" content="<?php echo $i18n->getText('site','description'); ?>">
         <meta name="author" content="Léo Maradan">
 		
         <meta name="viewport" content="width=device-width">
@@ -29,11 +29,11 @@ if(!defined('URLESS')) {
 
         <div class="header-container">
             <header class="wrapper clearfix">
-                <h1 class="title"><a href="."><?php echo $sitename; ?></a></h1>
+                <h1 class="title"><a href="."><?php echo $i18n->getText('site','sitename'); ?></a></h1>
                 <nav>
                     <ul>
-                        <li><a href=".">Short it!</a></li>
-                        <li><a href="about.php">About</a></li>
+                        <li><a href="."><?php echo $i18n->getText('site','shortlink'); ?></a></li>
+                        <li><a href="about.php"><?php echo $i18n->getText('site','aboutlink'); ?></a></li>
                     </ul>
                 </nav>
             </header>
@@ -41,7 +41,6 @@ if(!defined('URLESS')) {
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-
                 <article>
                     <header>
                         <h1><?php echo $title; ?></h1>
@@ -50,11 +49,13 @@ if(!defined('URLESS')) {
 						<?php echo $message; ?>
                     </section>
                 </article>
-
+								
+				<?php if(!isset($noside)) { ?>
                 <aside>
-                    <h3>What is <?php echo $sitename; ?></h3>
-                    <p><?php echo $presentation; ?></p>
+                    <h3><?php echo $i18n->getText('site','presentation_title'); ?></h3>
+                    <p><?php echo $i18n->getText('site','presentation'); ?></p>
                 </aside>
+				<?php } ?>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->

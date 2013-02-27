@@ -34,8 +34,10 @@ if(isset($_POST['link'])) {
 				$terminate = true;
 				
 				if($result == false) {
-					$message = "An unknown error occurred";
-					$title = 'Please try later';
+					//$message = "An unknown error occurred";
+					//$title = 'Please try later';
+					$message = $i18n->getText('message unknown','message');
+					$title = $i18n->getText('message unknown','title');							
 					
 					include 'view/index.php';
 					exit;				
@@ -45,8 +47,10 @@ if(isset($_POST['link'])) {
 		
 		$short = $siteurl . '/?' . $uid;
 		
-		$message = "Your shortened url is <a href='http://$short' target=_blank>$short</a>";
-		$title = 'Please sir, take your url';
+		//$message = "Your shortened url is <a href='http://$short' target=_blank>$short</a>";
+		//$title = 'Please sir, take your url';
+		$message = $i18n->getText('message show_url','message', array('short' => $short));
+		$title = $i18n->getText('message show_url','title');				
 		
 		include 'view/index.php';
 		exit;

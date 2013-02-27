@@ -5,7 +5,6 @@ class FileDriver implements AccessDriver {
 		$dir = strtolower(substr($id,0,2));
 		$file = strtolower(substr($id,0,4));
 
-
 		if(file_exists('./data/' . $dir . '/' . $file . '.php')) {
 
 			include './data/' . $dir . '/' . $file . '.php';
