@@ -1,7 +1,7 @@
 <?php
 
 if(!defined('URLESS')) {
-	header('Location: .');
+	header('Location: ..');
 }
 
 $siteurl = 'htmltest/URLess';

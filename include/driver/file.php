@@ -1,6 +1,13 @@
 <?php
 
 class FileDriver implements AccessDriver {
+
+	function __construct() {
+		if(!file_exists('./data/')) {
+			mkdir('./data/', 0777);
+		}	
+	}
+
 	function openId($id, $create = false) {
 		$dir = strtolower(substr($id,0,2));
 		$file = strtolower(substr($id,0,4));

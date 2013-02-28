@@ -2,59 +2,24 @@
 
 define('URLESS', true);
 
-require 'functions.php';
+require 'include/functions.php';
 
-if(isset($_POST['link'])) {
-	$url = filter_var($_POST['link'], FILTER_VALIDATE_URL);
+$link = getParam('link','post');
 
-	if($url) {
-		$terminate = false;
-		$length = 4;
-		$cpt = 0;
-		
-		$uid = $driver->getId($url);
-		
-		if($uid != null) {
-			$terminate = true;
-		}
-		
-		while(!$terminate) {
-			$cpt++;
-			$uid = generateId($length);
-			
-			if($cpt >= 15) {
-				$cpt = 0;
-				$length++;
-			}
-			
-			$use = $driver->openId($uid,true);
-			
-			if($use == false) {
-				$result = $driver->appendToId($uid,$url);
-				$terminate = true;
-				
-				if($result == false) {
-					//$message = "An unknown error occurred";
-					//$title = 'Please try later';
-					$message = $i18n->getText('message unknown','message');
-					$title = $i18n->getText('message unknown','title');							
-					
-					include 'view/index.php';
-					exit;				
-				}
-			}
-		}
-		
-		$short = $siteurl . '/?' . $uid;
-		
-		//$message = "Your shortened url is <a href='http://$short' target=_blank>$short</a>";
-		//$title = 'Please sir, take your url';
-		$message = $i18n->getText('message show_url','message', array('short' => $short));
-		$title = $i18n->getText('message show_url','title');				
-		
-		include 'view/index.php';
-		exit;
+if($link != null) {
+	
+	$response = SetUrl($link);
+	
+	if($response['type'] == 'ok') {
+		$message = $i18n->getText('message show_url','message', array('short' => $siteurl . '/?' . $response['msg']));
+		$title = $i18n->getText('message show_url','title');	
+	} else {
+		$message = $i18n->getText('message unknown','message');
+		$title = $i18n->getText('message unknown','title');				
 	}
+
+	include 'view/index.php';
+	exit;		
 }
 
 header('Location: .');
