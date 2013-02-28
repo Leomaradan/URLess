@@ -17,10 +17,12 @@ $lang = i18n::getLangCode();
 $i18n = new i18n($lang);
 
 if($driver == null) {
-	$message = $i18n->getText('message unknown','message');
-	$title = $i18n->getText('message unknown','title');	
-	include 'view/index.php';
-	die;
+	if(URLESS == 'normal') {
+		$message = $i18n->getText('message unknown','message');
+		$title = $i18n->getText('message unknown','title');	
+		include 'view/index.php';
+		exit;
+	}
 }
 
 function generateId($nb) {

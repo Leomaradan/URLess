@@ -1,6 +1,6 @@
 <?php
 
-define('URLESS', true);
+define('URLESS', 'normal');
 
 require 'include/functions.php';
 
