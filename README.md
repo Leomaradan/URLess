@@ -15,7 +15,7 @@ API
 
 A small API is implemented
 
-Use api.php
+The url for api is /api.php
 
 There is three parameters:
 - request
