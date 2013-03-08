@@ -1,8 +1,8 @@
 <?php
 
-define('URLESS', true);
+define('URLESS', 'normal');
 
-require 'functions.php';
+require 'include/functions.php';
 
 $message = $i18n->getText('site','underconstruction');
 $title = $i18n->getText('site','underconstruction');	
