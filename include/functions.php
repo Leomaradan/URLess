@@ -10,7 +10,7 @@ require 'config.php';
 require 'driver.php';
 require 'i18n.php';
 
-$driver = Driver::Get("file");
+$driver = Driver::Get($config['driver']);
 
 $lang = i18n::getLangCode();
 

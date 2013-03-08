@@ -6,6 +6,8 @@ if(!defined('URLESS')) {
 
 $siteurl = 'htmltest/URLess';
 
+$config['driver'] = 'file';
+
 $config['pdo']['dsn'] = 'mysql:dbname=urless;host=127.0.0.1';
 $config['pdo']['user'] = 'root';
 $config['pdo']['passwd'] = null;
